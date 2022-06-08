@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import CustomerList from "./components/CustomerList";
+import { Button } from "@mui/material";
+import { Box } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { customerDataState } from "./state";
+import axios from "axios";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [data, setData] = useRecoilState(customerDataState);
+
+	useEffect(() => {
+		const api_url = "http://localhost:5000/api/";
+
+		axios
+			.get(api_url + "customers")
+			.then((res) => {
+				setData(res.data);
+			})
+			.catch((e) => alert("Fetch customer data failed! " + e));
+	});
+
+	return (
+		<div className="App">
+			<h1>Kompare Assigment Task</h1>
+			<Box
+				sx={{ maxWidth: 0.75, display: "block", margin: "auto", marginTop: 2 }}>
+				<CustomerList></CustomerList>
+			</Box>
+
+			<Link to="/newuser">
+				<Button sx={{ marginTop: 2 }} variant="contained">
+					Add new user
+				</Button>
+			</Link>
+		</div>
+	);
 }
 
 export default App;
