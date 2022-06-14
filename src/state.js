@@ -8,3 +8,9 @@ export const customerDataState = atom({
   default: [{}],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const colorModeState = atom({
+  key: "colorModeState",
+  default: "light",
+  effects_UNSTABLE: [persistAtom],
+});

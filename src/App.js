@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { customerDataState } from "./state";
+import Navbar from "./components/Navbar"
 import axios from "axios";
 
 function App() {
@@ -25,15 +26,16 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Kompare Assigment Task</h1>
+
+			<Navbar heading="Dashboard"/>
 			<Box
 				sx={{ maxWidth: 0.75, display: "block", margin: "auto", marginTop: 2 }}>
 				<CustomerList></CustomerList>
 			</Box>
 
 			<Link to="/newuser">
-				<Button sx={{ marginTop: 2 }} variant="contained">
-					Add new user
+				<Button color="secondary" sx={{ marginTop: 2}} variant="contained">
+					Add new user +
 				</Button>
 			</Link>
 		</div>

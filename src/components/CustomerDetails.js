@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { customerDataState } from "../state";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import Navbar from "./Navbar"
 
 export default function CustomerDetails() {
 	const params = useParams();
@@ -39,8 +40,9 @@ export default function CustomerDetails() {
 	}
 
 	return (
-		<Box sx={{ textAlign: "center" }}>
-			<h1>Customer Details</h1>
+		<Box sx={{textAlign: "center"}} component="div">
+			<Navbar heading="Customer details"/>
+			<Box sx={{ textAlign: "center" }}>
 
 			<h4>Name and lastname: {customer.name}</h4>
 			<h4>Email: {customer.mail}</h4>
@@ -66,5 +68,8 @@ export default function CustomerDetails() {
 				Calculate Insurance Price
 			</Button>
 		</Box>
+
+		</Box>
+		
 	);
 }

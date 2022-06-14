@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import axios from "axios";
 import { customerDataState } from "../state";
 import { useNavigate } from "react-router";
+import Navbar from "../components/Navbar";
 
 export default function AddNewUser() {
   const navigate = useNavigate();
@@ -30,8 +31,7 @@ export default function AddNewUser() {
 
   return (
     <Box sx={{ textAlign: "center" }}>
-      <h1>Add new user</h1>
-      <br></br>
+      <Navbar heading="Add new client"/>
       <Box component="form" sx={{ marginTop: 2 }}>
         <TextField
           sx={{ marginTop: 2, minWidth: 0.2 }}
@@ -69,7 +69,7 @@ export default function AddNewUser() {
           variant="outlined"
         />
         <br></br>
-        <Button onClick={submit} sx={{ marginTop: 3 }} variant="contained">
+        <Button onClick={submit} color="secondary" sx={{ marginTop: 3 }} variant="contained">
           Submit
         </Button>
       </Box>

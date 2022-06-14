@@ -10,6 +10,18 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { customerDataState } from "../state";
 import { useRecoilValue } from "recoil";
+import { styled } from "@mui/system";
+
+const ClientCell = styled(TableCell)(({ theme }) => ({
+
+	color: "blue"
+}));
+
+const ClientCellHeader = styled(TableCell)(({ theme }) => ({
+
+	fontWeight: "bold"
+}));
+
 
 export default function CustomerList() {
 	const customers = useRecoilValue(customerDataState);
@@ -19,20 +31,20 @@ export default function CustomerList() {
 			<Table sx={{ minWidth: 500 }} aria-label="simple table">
 				<TableHead>
 					<TableRow>
-						<TableCell>Name and lastname</TableCell>
-						<TableCell>E-mail</TableCell>
-						<TableCell>City</TableCell>
-						<TableCell>Birthdate</TableCell>
-						<TableCell></TableCell>
+						<ClientCellHeader>Name and lastname</ClientCellHeader>
+						<ClientCellHeader>E-mail</ClientCellHeader>
+						<ClientCellHeader>City</ClientCellHeader>
+						<ClientCellHeader>Birthdate</ClientCellHeader>
+						<ClientCellHeader></ClientCellHeader>
 					</TableRow>
 				</TableHead>
 				<TableBody>
 					{customers.map((customer) => (
 						<TableRow>
-							<TableCell>{customer.name}</TableCell>
-							<TableCell>{customer.mail}</TableCell>
-							<TableCell>{customer.city}</TableCell>
-							<TableCell>{customer.birthdate}</TableCell>
+							<ClientCell>{customer.name}</ClientCell>
+							<ClientCell>{customer.mail}</ClientCell>
+							<ClientCell>{customer.city}</ClientCell>
+							<ClientCell>{customer.birthdate}</ClientCell>
 							<TableCell>
 								<Link to={"/customer/" + customer._id}>
 									<Button>Details</Button>
