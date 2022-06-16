@@ -11,19 +11,21 @@ import { Link } from "react-router-dom";
 import { customerDataState } from "../state";
 import { useRecoilValue } from "recoil";
 import { styled } from "@mui/system";
+import { grey } from "@mui/material/colors";
+import { useRecoilState } from "recoil";
+import { colorModeState } from "../state";
 
 const ClientCell = styled(TableCell)(({ theme }) => ({
-
-	color: "blue"
+	color: "blue",
 }));
 
 const ClientCellHeader = styled(TableCell)(({ theme }) => ({
-
-	fontWeight: "bold"
+	fontWeight: "bold",
 }));
 
-
 export default function CustomerList() {
+	const [colorMode, setColorMode] = useRecoilState(colorModeState);
+
 	const customers = useRecoilValue(customerDataState);
 
 	return (

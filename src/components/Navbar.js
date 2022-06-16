@@ -3,23 +3,36 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import { createTheme, Switch } from "@mui/material";
-import { ThemeProvider } from "@mui/system";
+import { Switch } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { useRecoilState } from "recoil";
+import { colorModeState } from "../state";
 
 export default function Navbar(props) {
+	const [colorMode, setColorMode] = useRecoilState(colorModeState);
+
+	let checked = colorMode == "light" ? false : true;
+
+	function handleSwitch(evt) {
+		setColorMode(evt.target.checked ? "dark" : "light");
+	}
+
 	return (
 		<Box sx={{ backgroundColor: "green", flexGrow: 1 }}>
 			<AppBar position="static">
 				<Toolbar>
-					<Typography variant="h5" component="div" sx={{marginLeft: 10, flexGrow: 1 }}>
+					<Typography
+						variant="h5"
+						component="div"
+						sx={{ marginLeft: 10, flexGrow: 1 }}>
 						{props.heading}
 					</Typography>
 					<FontAwesomeIcon icon={faSun} />
-					<Switch></Switch>
+					<Switch
+						checked={checked}
+						color="secondary"
+						onChange={handleSwitch}></Switch>
 					<FontAwesomeIcon icon={faMoon} />
 				</Toolbar>
 			</AppBar>
