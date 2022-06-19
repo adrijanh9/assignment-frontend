@@ -12,8 +12,6 @@ import { grey } from "@mui/material/colors";
 import { Paper } from "@mui/material";
 
 export default function AddNewUser() {
-	const [colorMode, setColorMode] = useRecoilState(colorModeState);
-	let bgClr = colorMode == "light" ? "#ffffff" : grey[300]; //"#eeeeee"
 
 	const navigate = useNavigate();
 
@@ -47,7 +45,6 @@ export default function AddNewUser() {
 						maxWidth: 0.2,
 						marginLeft: "auto",
 						marginRight: "auto",
-						backgroundColor: bgClr,
 					}}>
 					<TextField
 						sx={{ marginTop: 2, minWidth: 0.2 }}
